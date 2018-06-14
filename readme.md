@@ -51,7 +51,7 @@ Explain: I create a network with ip begin with 172.18.0.* and remember add gatew
 ## Create Redis docker 
 ```
 docker pull redis
-docker run -d --net mynet123 --ip 172.18.0.2 --name myredis redis:latest
+docker run -d --net mynet123 --ip 172.18.0.30 --name redis_code redis:latest
 ```
 
 Explain: 
@@ -61,6 +61,21 @@ Explain:
 ## Create API docker
 ```
 docker build -t my_code .
-docker run -d  --net mynet123 --ip 172.18.0.3 --name api01 my_code:latest
+docker run -d  --net mynet123 --ip 172.18.0.30 --name code01 my_code:latest
 ```
 
+docker run -d -p 8080:80 --name code02 my_code:latest
+docker run -d -p 8080:80 --name webserver nginx
+docker run -d -p 8080:3000 --name code02 my_code:latest
+docker run -d -p 192.168.255.2:8080:80 --name nginx8080 nginx
+
+
+
+docker run -d --net mynet123 --ip 172.18.0.30 --name redis_code redis:latest
+
+
+docker run -d --net redis_code:code01 redis:latest
+
+//docker run -d -p 192.168.255.2:8080:80 --name nginx8080 nginx
+
+docker system prune

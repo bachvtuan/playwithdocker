@@ -17,8 +17,8 @@ RUN mkdir /root/.ssh/
 # Set chmod 
 #RUN chmod 400 /root/.ssh/id_rsa
 # Create known_hosts
-#RUN touch /root/.ssh/known_hosts
-#RUN ssh-keyscan git.legitiapplications.com >> /root/.ssh/known_hosts
+RUN touch /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 WORKDIR /data
 RUN wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-x64.tar.xz
@@ -30,8 +30,7 @@ RUN ln -s /data/node-v8.9.4-linux-x64/bin/node /usr/local/bin/node
 RUN ln -s /data/node-v8.9.4-linux-x64/bin/npm /usr/local/bin/npm
 
 # Clone the conf files into the docker container
-RUN git clone -b client/proofstack_development git@git.legitiapplications.com:legiti-staffs/TeknoRecordWeb.git
-
+RUN git clone https://github.com/bachvtuan/playwithdocker.git
 
 # Copy the current directory contents into the container at /data
 ADD . /data

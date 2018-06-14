@@ -3,7 +3,7 @@ const app = express()
 var redis = require('redis');
 
 var key = "count";
-var client = redis.createClient({host: "127.0.0.1",port:6380})
+var client = redis.createClient({host: "myredis",port:6380})
 var is_redis_ready = false;
 client.on("error", () => {
 	console.log("error");
