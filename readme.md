@@ -49,14 +49,13 @@ Explain: I create a network with ip begin with 172.18.0.* and remember add gatew
 
 
 ## Create Redis docker 
+
 ```
 docker pull redis
 docker run -d  --net mynet123 -p 6378:6379 --name myredis redis:latest
 ```
 
-Explain: 
-+ the first line will create redis image from docker ( default tag is latest)
-+ second line will create container with ip is 172.18.0.2 and belong network mynet123 with name is myredis
+Must set name is myredis because in code will connect to host myredis
 
 ## Create API docker
 ```
